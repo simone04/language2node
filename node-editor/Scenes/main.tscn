@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://8mpjjeyyap3y"]
+
+[ext_resource type="Script" uid="uid://blsc5uflrcb8s" path="res://Scripts/graph_edit.gd" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://1g1lmi562n1" path="res://Scripts/Managers/nodes_manager.gd" id="2_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://bn3xiwrskdjsk" path="res://Scenes/Node.tscn" id="2_kry3j"]
+[ext_resource type="Script" uid="uid://10ts8v57fvo5" path="res://Scripts/ResourceTypes/NodeRes.gd" id="3_kry3j"]
+[ext_resource type="Script" uid="uid://m6l3thcqtrtl" path="res://Scripts/ResourceTypes/PinRes.gd" id="4_21xkr"]
+
+[sub_resource type="Resource" id="Resource_21xkr"]
+script = ExtResource("4_21xkr")
+type = 1
+text = ""
+color = Color(0.853643, 0, 0.238536, 1)
+metadata/_custom_type_script = "uid://m6l3thcqtrtl"
+
+[sub_resource type="Resource" id="Resource_344ge"]
+script = ExtResource("4_21xkr")
+type = 0
+text = ""
+color = Color(0, 0, 1, 1)
+metadata/_custom_type_script = "uid://m6l3thcqtrtl"
+
+[sub_resource type="Resource" id="Resource_kry3j"]
+script = ExtResource("4_21xkr")
+type = 0
+text = ""
+color = Color(1, 0, 0, 1)
+metadata/_custom_type_script = "uid://m6l3thcqtrtl"
+
+[sub_resource type="Resource" id="Resource_6bp64"]
+script = ExtResource("3_kry3j")
+name = ""
+input_pins = Array[ExtResource("4_21xkr")]([])
+output_pins = Array[ExtResource("4_21xkr")]([])
+metadata/_custom_type_script = "uid://10ts8v57fvo5"
+
+[node name="Main" type="Node"]
+
+[node name="GraphEdit" type="GraphEdit" parent="." node_paths=PackedStringArray("shortcut_context")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+shortcut_context = NodePath(".")
+script = ExtResource("1_bo1nx")
+
+[node name="GraphNode" parent="GraphEdit" instance=ExtResource("2_kry3j")]
+offset_left = 280.0
+offset_top = 203.0
+offset_right = 420.0
+offset_bottom = 305.0
+mouse_filter = 1
+position_offset = Vector2(280, 203)
+input_pins = Array[ExtResource("4_21xkr")]([SubResource("Resource_21xkr"), SubResource("Resource_344ge")])
+
+[node name="GraphNode2" parent="GraphEdit" instance=ExtResource("2_kry3j")]
+offset_left = 280.0
+offset_top = 203.0
+offset_right = 420.0
+offset_bottom = 305.0
+mouse_filter = 1
+position_offset = Vector2(280, 203)
+output_pins = Array[ExtResource("4_21xkr")]([SubResource("Resource_kry3j")])
+
+[node name="Nodes" type="Node" parent="."]
+script = ExtResource("2_jjvhh")
+nodes = Array[ExtResource("3_kry3j")]([SubResource("Resource_6bp64")])
+
+[connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
+[connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
+[connection signal="popup_request" from="GraphEdit" to="GraphEdit" method="_on_popup_request"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="NodeRes" load_steps=3 format=3 uid="uid://fgw3rpyt1ogn"]
+
+[ext_resource type="Script" uid="uid://m6l3thcqtrtl" path="res://Scripts/ResourceTypes/PinRes.gd" id="1_exs7p"]
+[ext_resource type="Script" uid="uid://10ts8v57fvo5" path="res://Scripts/ResourceTypes/NodeRes.gd" id="2_f0cy3"]
+
+[resource]
+script = ExtResource("2_f0cy3")
+name = "Input"
+input_pins = Array[ExtResource("1_exs7p")]([])
+output_pins = Array[ExtResource("1_exs7p")]([])
+metadata/_custom_type_script = "uid://10ts8v57fvo5"

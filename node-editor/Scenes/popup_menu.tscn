@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://xc5abqo25skn"]
+
+[ext_resource type="Script" uid="uid://dwcrw42j348d5" path="res://Scripts/popup_menu.gd" id="1_6ljy1"]
+
+[node name="PopupMenu" type="PopupMenu"]
+visible = true
+unfocusable = true
+script = ExtResource("1_6ljy1")
+
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
